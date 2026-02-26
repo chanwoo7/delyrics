@@ -4,6 +4,11 @@
 
 # 가사 중복 제거기
 
+[![Release](https://img.shields.io/github/v/release/chanwoo7/lyrics-deduper)](https://github.com/chanwoo7/lyrics-deduper/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/chanwoo7/lyrics-deduper/total)](https://github.com/chanwoo7/lyrics-deduper/releases)
+![Platform](https://img.shields.io/badge/platform-macOS-blue)
+![Flutter](https://img.shields.io/badge/Flutter-Desktop-02569B?logo=flutter)
+
 가사 텍스트를 줄 단위로 중복 제거해주는 macOS 전용 데스크톱 앱입니다.
 
 여러 줄의 가사를 붙여넣으면, 각 줄을 위에서부터 순서대로 검사하여 이미 등장한 내용과 중복되는 줄은 제거하고, 최초 등장한 줄만 유지한 결과를 출력합니다.
