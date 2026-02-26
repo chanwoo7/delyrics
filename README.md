@@ -17,6 +17,14 @@
 
 <p align="center">Paste multi-line lyrics, and the app scans each line top to bottom —<br>removing lines that have already appeared while keeping the first occurrence.</p>
 
+## Install
+
+1. Download `Delyrics.dmg` from the [latest release](https://github.com/chanwoo7/delyrics/releases/latest).
+2. Open the DMG and drag `Delyrics.app` to the **Applications** folder.
+3. On first launch, macOS may show an "unidentified developer" warning. To open:
+   - Right-click the app → **Open** → click **Open** in the dialog, or
+   - Go to **System Settings > Privacy & Security** and click **Open Anyway**.
+
 ## Run
 
 ```bash
