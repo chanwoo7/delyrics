@@ -20,13 +20,21 @@ class LyricsOutputPanel extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 2, bottom: 8),
-          child: Text(
-            l10n.deduplicatedResult,
-            style: theme.textTheme.labelMedium,
+          child: SizedBox(
+            height: 28,
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                l10n.deduplicatedResult,
+                style: theme.textTheme.labelMedium,
+              ),
+            ),
           ),
         ),
         Expanded(
-          child: Container(
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 250),
+            curve: Curves.easeOut,
             width: double.infinity,
             decoration: BoxDecoration(
               color: hasOutput
@@ -50,28 +58,47 @@ class LyricsOutputPanel extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: hasOutput
-                  ? SingleChildScrollView(
-                      padding: const EdgeInsets.all(16),
-                      child: SelectableText(
-                        outputText,
-                        style: TextStyle(
-                          fontSize: 14,
-                          height: 1.7,
-                          color: theme.colorScheme.onSurface,
-                          fontFamily: 'Pretendard',
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                switchInCurve: Curves.easeOut,
+                child: hasOutput
+                    ? SizedBox.expand(
+                        key: const ValueKey('output'),
+                        child: SingleChildScrollView(
+                          padding: const EdgeInsets.all(16),
+                          child: SelectableText(
+                            outputText,
+                            style: TextStyle(
+                              fontSize: 14,
+                              height: 1.7,
+                              color: theme.colorScheme.onSurface,
+                              fontFamily: 'Pretendard',
+                            ),
+                          ),
+                        ),
+                      )
+                    : Center(
+                        key: const ValueKey('empty'),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.library_music_outlined,
+                              size: 48,
+                              color: theme.colorScheme.onSurface.withValues(alpha: 0.12),
+                            ),
+                            const SizedBox(height: 12),
+                            Text(
+                              l10n.outputPlaceholder,
+                              style: TextStyle(
+                                color: theme.colorScheme.onSurface.withValues(alpha: 0.25),
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    )
-                  : Center(
-                      child: Text(
-                        l10n.outputPlaceholder,
-                        style: TextStyle(
-                          color: theme.colorScheme.onSurface.withValues(alpha: 0.25),
-                          fontSize: 14,
-                        ),
-                      ),
-                    ),
+              ),
             ),
           ),
         ),

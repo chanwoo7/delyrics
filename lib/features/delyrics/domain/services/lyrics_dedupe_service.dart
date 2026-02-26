@@ -13,10 +13,11 @@ class LyricsDedupeService {
     final lines = input.split('\n');
     final seen = <String>{};
     final resultLines = <String>[];
+    final duplicateIndices = <int>{};
     int totalNonEmptyLines = 0;
 
-    for (final line in lines) {
-      final trimmed = line.trim();
+    for (int i = 0; i < lines.length; i++) {
+      final trimmed = lines[i].trim();
 
       // 빈 줄은 무시
       if (trimmed.isEmpty) continue;
@@ -29,6 +30,8 @@ class LyricsDedupeService {
       if (!seen.contains(key)) {
         seen.add(key);
         resultLines.add(trimmed);
+      } else {
+        duplicateIndices.add(i);
       }
     }
 
@@ -37,6 +40,7 @@ class LyricsDedupeService {
       inputLineCount: totalNonEmptyLines,
       outputLineCount: resultLines.length,
       removedDuplicateCount: totalNonEmptyLines - resultLines.length,
+      duplicateLineIndices: duplicateIndices,
     );
   }
 

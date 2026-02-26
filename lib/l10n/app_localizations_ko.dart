@@ -66,4 +66,10 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get localeKorean => '한국어';
+
+  @override
+  String get openFile => '파일 열기';
+
+  @override
+  String get unsupportedFileType => '.txt 및 .lrc 파일만 지원됩니다';
 }

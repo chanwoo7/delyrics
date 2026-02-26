@@ -25,5 +25,7 @@
   "outputPlaceholder": "변환 결과가 여기에 표시됩니다",
   "localeSystem": "시스템 언어",
   "localeEnglish": "English",
-  "localeKorean": "한국어"
+  "localeKorean": "한국어",
+  "openFile": "파일 열기",
+  "unsupportedFileType": ".txt 및 .lrc 파일만 지원됩니다"
 }

@@ -17,16 +17,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _inputController = TextEditingController();
+  final _inputController = HighlightingTextEditingController();
   final _inputFocusNode = FocusNode();
   final _dedupeService = LyricsDedupeService();
 
   DedupeResult? _result;
   String _outputText = '';
+  String _textAtConversion = '';
 
   @override
   void initState() {
     super.initState();
+    _inputController.addListener(_onTextChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _inputFocusNode.requestFocus();
     });
@@ -34,16 +36,32 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
+    _inputController.removeListener(_onTextChanged);
     _inputController.dispose();
     _inputFocusNode.dispose();
     super.dispose();
   }
 
+  void _onTextChanged() {
+    if (_result != null && _inputController.text != _textAtConversion) {
+      setState(() {
+        _result = null;
+        _outputText = '';
+        _inputController.clearHighlights();
+      });
+    }
+  }
+
   void _convert() {
     final result = _dedupeService.deduplicate(_inputController.text);
+    _textAtConversion = _inputController.text;
     setState(() {
       _result = result;
       _outputText = result.outputText;
+      _inputController.setHighlightState(
+        duplicateLineIndices: result.duplicateLineIndices,
+        highlightColor: Theme.of(context).colorScheme.error.withValues(alpha: 0.5),
+      );
     });
   }
 
@@ -51,28 +69,44 @@ class _HomePageState extends State<HomePage> {
     if (_outputText.isEmpty) return;
     final l10n = AppLocalizations.of(context)!;
     Clipboard.setData(ClipboardData(text: _outputText));
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
           l10n.copiedToClipboard,
-          style: const TextStyle(fontSize: 13),
+          style: TextStyle(
+            fontSize: 13,
+            color: isDark ? const Color(0xFFDDE4EE) : Colors.white,
+          ),
         ),
         behavior: SnackBarBehavior.floating,
         width: 260,
         duration: const Duration(seconds: 2),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        backgroundColor: Theme.of(context).brightness == Brightness.dark
-            ? const Color(0xFF2E3A4C)
+        backgroundColor: isDark
+            ? const Color(0xFF3A4A60)
             : const Color(0xFF1E2A3A),
       ),
     );
   }
 
+  void _onFileLoaded(String content) {
+    setState(() {
+      _inputController.clearHighlights();
+      _inputController.text = content;
+      _result = null;
+      _outputText = '';
+      _textAtConversion = '';
+    });
+  }
+
   void _reset() {
     setState(() {
+      _inputController.clearHighlights();
       _inputController.clear();
       _result = null;
       _outputText = '';
+      _textAtConversion = '';
     });
     _inputFocusNode.requestFocus();
   }
@@ -121,6 +155,7 @@ class _HomePageState extends State<HomePage> {
                       child: LyricsInputPanel(
                         controller: _inputController,
                         focusNode: _inputFocusNode,
+                        onFileLoaded: _onFileLoaded,
                       ),
                     ),
                     const SizedBox(width: 20),
@@ -136,11 +171,7 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 16),
 
               // 액션 버튼 + 상태 바
-              Wrap(
-                spacing: 16,
-                runSpacing: 8,
-                alignment: WrapAlignment.spaceBetween,
-                crossAxisAlignment: WrapCrossAlignment.center,
+              Row(
                 children: [
                   ActionButtons(
                     onConvert: _convert,
@@ -148,7 +179,13 @@ class _HomePageState extends State<HomePage> {
                     onReset: _reset,
                     hasOutput: _outputText.isNotEmpty,
                   ),
-                  if (_result != null) StatusBar(result: _result),
+                  const Spacer(),
+                  AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 200),
+                    child: _result != null
+                        ? StatusBar(key: const ValueKey('status'), result: _result)
+                        : const SizedBox.shrink(key: ValueKey('empty')),
+                  ),
                 ],
               ),
             ],
