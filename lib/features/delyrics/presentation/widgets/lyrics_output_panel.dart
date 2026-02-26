@@ -59,7 +59,7 @@ class LyricsOutputPanel extends StatelessWidget {
                           fontSize: 14,
                           height: 1.7,
                           color: theme.colorScheme.onSurface,
-                          fontFamily: '.AppleSystemUIFont',
+                          fontFamily: 'Pretendard',
                         ),
                       ),
                     )

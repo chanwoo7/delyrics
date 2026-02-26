@@ -21,6 +21,7 @@ class ActionButtons extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
 
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         _PrimaryButton(
           label: l10n.convert,
@@ -35,7 +36,7 @@ class ActionButtons extends StatelessWidget {
           onPressed: hasOutput ? onCopy : null,
           theme: theme,
         ),
-        const Spacer(),
+        const SizedBox(width: 10),
         _SecondaryButton(
           label: l10n.reset,
           icon: Icons.refresh_rounded,

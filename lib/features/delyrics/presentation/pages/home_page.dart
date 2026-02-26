@@ -95,8 +95,8 @@ class _HomePageState extends State<HomePage> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // 헤더
               Row(
                 children: [
                   Text(
@@ -111,32 +111,46 @@ class _HomePageState extends State<HomePage> {
               ),
               const SizedBox(height: 20),
 
+              // 좌우 분할 패널
               Expanded(
-                flex: 5,
-                child: LyricsInputPanel(
-                  controller: _inputController,
-                  focusNode: _inputFocusNode,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    // 왼쪽: 입력
+                    Expanded(
+                      child: LyricsInputPanel(
+                        controller: _inputController,
+                        focusNode: _inputFocusNode,
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                    // 오른쪽: 출력
+                    Expanded(
+                      child: LyricsOutputPanel(
+                        outputText: _outputText,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 16),
 
-              ActionButtons(
-                onConvert: _convert,
-                onCopy: _copyResult,
-                onReset: _reset,
-                hasOutput: _outputText.isNotEmpty,
+              // 액션 버튼 + 상태 바
+              Wrap(
+                spacing: 16,
+                runSpacing: 8,
+                alignment: WrapAlignment.spaceBetween,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  ActionButtons(
+                    onConvert: _convert,
+                    onCopy: _copyResult,
+                    onReset: _reset,
+                    hasOutput: _outputText.isNotEmpty,
+                  ),
+                  if (_result != null) StatusBar(result: _result),
+                ],
               ),
-              const SizedBox(height: 16),
-
-              Expanded(
-                flex: 5,
-                child: LyricsOutputPanel(
-                  outputText: _outputText,
-                ),
-              ),
-              const SizedBox(height: 12),
-
-              StatusBar(result: _result),
             ],
           ),
         ),

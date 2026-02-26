@@ -123,7 +123,7 @@ class _DelyricsAppState extends State<DelyricsApp> {
         onSurface: Color(0xFF1E2A3A),
         outline: Color(0xFFCDD5DF),
       ),
-      fontFamily: '.AppleSystemUIFont',
+      fontFamily: 'Pretendard',
       textTheme: const TextTheme(
         headlineSmall: TextStyle(
           fontSize: 20,
@@ -160,7 +160,7 @@ class _DelyricsAppState extends State<DelyricsApp> {
         onSurface: Color(0xFFDDE4EE),
         outline: Color(0xFF2E3A4C),
       ),
-      fontFamily: '.AppleSystemUIFont',
+      fontFamily: 'Pretendard',
       textTheme: const TextTheme(
         headlineSmall: TextStyle(
           fontSize: 20,

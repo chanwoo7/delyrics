@@ -54,7 +54,7 @@ class LyricsInputPanel extends StatelessWidget {
                   fontSize: 14,
                   height: 1.7,
                   color: theme.colorScheme.onSurface,
-                  fontFamily: '.AppleSystemUIFont',
+                  fontFamily: 'Pretendard',
                 ),
                 decoration: InputDecoration(
                   hintText: l10n.inputPlaceholder,
