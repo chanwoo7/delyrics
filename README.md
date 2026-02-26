@@ -2,18 +2,20 @@
   <img src="img/app-icon.png" width="128" alt="Delyrics icon">
 </p>
 
-# Delyrics - Lyrics Deduplicator
+<h1 align="center">Delyrics - Lyrics Deduplicator</h1>
 
-[![Release](https://img.shields.io/github/v/release/chanwoo7/delyrics)](https://github.com/chanwoo7/delyrics/releases/latest)
-[![Downloads](https://img.shields.io/github/downloads/chanwoo7/delyrics/total)](https://github.com/chanwoo7/delyrics/releases)
-![Platform](https://img.shields.io/badge/platform-macOS-blue)
-![Flutter](https://img.shields.io/badge/Flutter-Desktop-02569B?logo=flutter)
+<p align="center">
+  <a href="https://github.com/chanwoo7/delyrics/releases/latest"><img src="https://img.shields.io/github/v/release/chanwoo7/delyrics" alt="Release"></a>
+  <a href="https://github.com/chanwoo7/delyrics/releases"><img src="https://img.shields.io/github/downloads/chanwoo7/delyrics/total" alt="Downloads"></a>
+  <img src="https://img.shields.io/badge/platform-macOS-blue" alt="Platform">
+  <img src="https://img.shields.io/badge/Flutter-Desktop-02569B?logo=flutter" alt="Flutter">
+</p>
 
-English | [한국어](README.ko.md)
+<p align="center">English | <a href="README.ko.md">한국어</a></p>
 
-A simple macOS desktop app that removes duplicate lines from lyrics.
+<p align="center">A simple macOS desktop app that removes duplicate lines from lyrics.</p>
 
-Paste multi-line lyrics, and the app scans each line top to bottom — removing lines that have already appeared while keeping the first occurrence.
+<p align="center">Paste multi-line lyrics, and the app scans each line top to bottom —<br>removing lines that have already appeared while keeping the first occurrence.</p>
 
 ## Run
 

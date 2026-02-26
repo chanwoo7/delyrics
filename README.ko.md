@@ -2,18 +2,20 @@
   <img src="img/app-icon.png" width="128" alt="Delyrics 아이콘">
 </p>
 
-# Delyrics - 가사 중복 제거기
+<h1 align="center">Delyrics - 가사 중복 제거기</h1>
 
-[![Release](https://img.shields.io/github/v/release/chanwoo7/delyrics)](https://github.com/chanwoo7/delyrics/releases/latest)
-[![Downloads](https://img.shields.io/github/downloads/chanwoo7/delyrics/total)](https://github.com/chanwoo7/delyrics/releases)
-![Platform](https://img.shields.io/badge/platform-macOS-blue)
-![Flutter](https://img.shields.io/badge/Flutter-Desktop-02569B?logo=flutter)
+<p align="center">
+  <a href="https://github.com/chanwoo7/delyrics/releases/latest"><img src="https://img.shields.io/github/v/release/chanwoo7/delyrics" alt="Release"></a>
+  <a href="https://github.com/chanwoo7/delyrics/releases"><img src="https://img.shields.io/github/downloads/chanwoo7/delyrics/total" alt="Downloads"></a>
+  <img src="https://img.shields.io/badge/platform-macOS-blue" alt="Platform">
+  <img src="https://img.shields.io/badge/Flutter-Desktop-02569B?logo=flutter" alt="Flutter">
+</p>
 
-[English](README.md) | 한국어
+<p align="center"><a href="README.md">English</a> | 한국어</p>
 
-가사 텍스트를 줄 단위로 중복 제거해주는 간단한 macOS 전용 데스크톱 앱입니다.
+<p align="center">가사 텍스트를 줄 단위로 중복 제거해주는 간단한 macOS 전용 데스크톱 앱입니다.</p>
 
-여러 줄의 가사를 붙여넣으면, 각 줄을 위에서부터 순서대로 검사하여 이미 등장한 내용과 중복되는 줄은 제거하고, 최초 등장한 줄만 유지한 결과를 출력합니다.
+<p align="center">여러 줄의 가사를 붙여넣으면, 각 줄을 위에서부터 순서대로 검사하여<br>이미 등장한 내용과 중복되는 줄은 제거하고, 최초 등장한 줄만 유지한 결과를 출력합니다.</p>
 
 ## 실행 방법
 
