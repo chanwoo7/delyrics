@@ -1,0 +1,29 @@
+{
+  "@@locale": "ko",
+  "appTitle": "Delyrics",
+  "copiedToClipboard": "결과가 클립보드에 복사되었습니다",
+  "themeSystem": "시스템 설정",
+  "themeLight": "라이트 모드",
+  "themeDark": "다크 모드",
+  "convert": "변환",
+  "copyResult": "결과 복사",
+  "reset": "초기화",
+  "statusInput": "입력",
+  "statusOutput": "출력",
+  "statusDeduplicated": "중복 제거",
+  "linesCount": "{count}줄",
+  "@linesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "originalLyrics": "원본 가사",
+  "inputPlaceholder": "여기에 가사를 붙여넣으세요...",
+  "deduplicatedResult": "중복 제거 결과",
+  "outputPlaceholder": "변환 결과가 여기에 표시됩니다",
+  "localeSystem": "시스템 언어",
+  "localeEnglish": "English",
+  "localeKorean": "한국어"
+}

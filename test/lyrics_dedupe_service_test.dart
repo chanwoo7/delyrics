@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:lyrics_deduper/features/lyrics_deduper/domain/services/lyrics_dedupe_service.dart';
+import 'package:delyrics/features/delyrics/domain/services/lyrics_dedupe_service.dart';
 
 void main() {
   late LyricsDedupeService service;

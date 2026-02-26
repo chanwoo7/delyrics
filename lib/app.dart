@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'features/lyrics_deduper/presentation/pages/home_page.dart';
+import 'l10n/app_localizations.dart';
+import 'features/delyrics/presentation/pages/home_page.dart';
 
 class ThemeModeNotifier extends InheritedWidget {
   final ThemeMode themeMode;
@@ -22,15 +23,37 @@ class ThemeModeNotifier extends InheritedWidget {
   }
 }
 
-class LyricsDeduperApp extends StatefulWidget {
-  const LyricsDeduperApp({super.key});
+class LocaleNotifier extends InheritedWidget {
+  final Locale? locale; // null = system default
+  final VoidCallback onToggle;
+
+  const LocaleNotifier({
+    super.key,
+    required this.locale,
+    required this.onToggle,
+    required super.child,
+  });
+
+  static LocaleNotifier of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<LocaleNotifier>()!;
+  }
 
   @override
-  State<LyricsDeduperApp> createState() => _LyricsDeduperAppState();
+  bool updateShouldNotify(LocaleNotifier oldWidget) {
+    return locale != oldWidget.locale;
+  }
 }
 
-class _LyricsDeduperAppState extends State<LyricsDeduperApp> {
+class DelyricsApp extends StatefulWidget {
+  const DelyricsApp({super.key});
+
+  @override
+  State<DelyricsApp> createState() => _DelyricsAppState();
+}
+
+class _DelyricsAppState extends State<DelyricsApp> {
   ThemeMode _themeMode = ThemeMode.system;
+  Locale? _locale; // null = follow system
 
   void _toggleThemeMode() {
     setState(() {
@@ -45,18 +68,44 @@ class _LyricsDeduperAppState extends State<LyricsDeduperApp> {
     });
   }
 
+  void _toggleLocale() {
+    setState(() {
+      if (_locale == null) {
+        _locale = const Locale('en');
+      } else if (_locale!.languageCode == 'en') {
+        _locale = const Locale('ko');
+      } else {
+        _locale = null; // back to system
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ThemeModeNotifier(
       themeMode: _themeMode,
       onToggle: _toggleThemeMode,
-      child: MaterialApp(
-        title: '가사 중복 제거기',
-        debugShowCheckedModeBanner: false,
-        themeMode: _themeMode,
-        theme: _buildLightTheme(),
-        darkTheme: _buildDarkTheme(),
-        home: const HomePage(),
+      child: LocaleNotifier(
+        locale: _locale,
+        onToggle: _toggleLocale,
+        child: MaterialApp(
+          title: 'Delyrics',
+          debugShowCheckedModeBanner: false,
+          locale: _locale,
+          supportedLocales: AppLocalizations.supportedLocales,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          localeResolutionCallback: (systemLocale, supportedLocales) {
+            if (systemLocale != null &&
+                systemLocale.languageCode == 'ko') {
+              return const Locale('ko');
+            }
+            return const Locale('en');
+          },
+          themeMode: _themeMode,
+          theme: _buildLightTheme(),
+          darkTheme: _buildDarkTheme(),
+          home: const HomePage(),
+        ),
       ),
     );
   }

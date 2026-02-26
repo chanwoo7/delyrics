@@ -1,0 +1,29 @@
+{
+  "@@locale": "en",
+  "appTitle": "Delyrics",
+  "copiedToClipboard": "Result copied to clipboard",
+  "themeSystem": "System theme",
+  "themeLight": "Light mode",
+  "themeDark": "Dark mode",
+  "convert": "Convert",
+  "copyResult": "Copy Result",
+  "reset": "Reset",
+  "statusInput": "Input",
+  "statusOutput": "Output",
+  "statusDeduplicated": "Deduplicated",
+  "linesCount": "{count} lines",
+  "@linesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "originalLyrics": "Original Lyrics",
+  "inputPlaceholder": "Paste lyrics here...",
+  "deduplicatedResult": "Deduplicated Result",
+  "outputPlaceholder": "Converted result will appear here",
+  "localeSystem": "System language",
+  "localeEnglish": "English",
+  "localeKorean": "Korean"
+}

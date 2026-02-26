@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../l10n/app_localizations.dart';
 
 class ActionButtons extends StatelessWidget {
   final VoidCallback onConvert;
@@ -17,28 +18,26 @@ class ActionButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     return Row(
       children: [
-        // 변환 버튼 (Primary)
         _PrimaryButton(
-          label: '변환',
+          label: l10n.convert,
           shortcutHint: '⌘ Enter',
           onPressed: onConvert,
           color: theme.colorScheme.primary,
         ),
         const SizedBox(width: 10),
-        // 결과 복사 버튼
         _SecondaryButton(
-          label: '결과 복사',
+          label: l10n.copyResult,
           icon: Icons.copy_rounded,
           onPressed: hasOutput ? onCopy : null,
           theme: theme,
         ),
         const Spacer(),
-        // 초기화 버튼
         _SecondaryButton(
-          label: '초기화',
+          label: l10n.reset,
           icon: Icons.refresh_rounded,
           onPressed: onReset,
           theme: theme,

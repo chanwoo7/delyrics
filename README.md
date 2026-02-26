@@ -1,66 +1,75 @@
 <p align="center">
-  <img src="img/app-icon.png" width="128" alt="가사 중복 제거기 아이콘">
+  <img src="img/app-icon.png" width="128" alt="Delyrics icon">
 </p>
 
-# 가사 중복 제거기
+# Delyrics - Lyrics Deduplicator
 
-[![Release](https://img.shields.io/github/v/release/chanwoo7/lyrics-deduper)](https://github.com/chanwoo7/lyrics-deduper/releases/latest)
-[![Downloads](https://img.shields.io/github/downloads/chanwoo7/lyrics-deduper/total)](https://github.com/chanwoo7/lyrics-deduper/releases)
+[![Release](https://img.shields.io/github/v/release/chanwoo7/delyrics)](https://github.com/chanwoo7/delyrics/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/chanwoo7/delyrics/total)](https://github.com/chanwoo7/delyrics/releases)
 ![Platform](https://img.shields.io/badge/platform-macOS-blue)
 ![Flutter](https://img.shields.io/badge/Flutter-Desktop-02569B?logo=flutter)
 
-가사 텍스트를 줄 단위로 중복 제거해주는 macOS 전용 데스크톱 앱입니다.
+English | [한국어](README.ko.md)
 
-여러 줄의 가사를 붙여넣으면, 각 줄을 위에서부터 순서대로 검사하여 이미 등장한 내용과 중복되는 줄은 제거하고, 최초 등장한 줄만 유지한 결과를 출력합니다.
+A simple macOS desktop app that removes duplicate lines from lyrics.
 
-## 실행 방법
+Paste multi-line lyrics, and the app scans each line top to bottom — removing lines that have already appeared while keeping the first occurrence.
+
+## Run
 
 ```bash
 flutter run -d macos
 ```
 
-## macOS 빌드 방법
+## Build for macOS
 
 ```bash
 flutter build macos
 ```
 
-빌드된 앱은 `build/macos/Build/Products/Release/` 디렉토리에 생성됩니다.
+The built app is located at `build/macos/Build/Products/Release/`.
 
-## 사용 방법
+## Usage
 
-1. 입력 영역에 가사를 붙여넣습니다.
-2. **변환** 버튼을 클릭하거나 `⌘ + Enter`를 누릅니다.
-3. 하단 출력 영역에 중복이 제거된 결과가 표시됩니다.
-4. **결과 복사** 버튼으로 클립보드에 복사할 수 있습니다.
-5. **초기화** 버튼으로 입력/출력을 모두 비울 수 있습니다.
+1. Paste lyrics into the input area.
+2. Click the **Convert** button or press `⌘ + Enter`.
+3. The deduplicated result appears in the output area below.
+4. Click **Copy Result** to copy to clipboard.
+5. Click **Reset** to clear both input and output.
 
-## 단축키
+## Shortcuts
 
-| 단축키 | 동작 |
-|--------|------|
-| `⌘ + Enter` | 중복 제거 변환 실행 |
-| `Enter` | 줄바꿈 (변환 아님) |
+| Shortcut | Action |
+|----------|--------|
+| `⌘ + Enter` | Run deduplication |
+| `Enter` | Line break (does not trigger conversion) |
 
-## 중복 판정 규칙
+## Deduplication Rule
 
-두 줄은 **모든 공백 문자(스페이스, 탭, 앞뒤 공백 등)를 제거했을 때** 문자열이 같으면 중복으로 간주합니다.
+Two lines are considered duplicates if they produce the **same string after removing all whitespace characters** (spaces, tabs, leading/trailing whitespace).
 
-예시: 아래 두 줄은 중복으로 판정됩니다.
+Example: the following two lines are treated as duplicates.
 ```
-너의 모든 순간 그게 나였으면 좋겠다
-너의 모든순간 그게나였으면 좋겠다
+Every moment of yours I wish it were me
+Every momentof yours I wishit were me
 ```
 
-출력 시에는 첫 등장한 줄의 원문(앞뒤 공백만 제거)을 그대로 유지합니다.
+The output preserves the original form of the first occurrence (only trimming leading/trailing whitespace).
 
-## 기술 스택
+## Features
+
+- Line-by-line deduplication with whitespace-normalized comparison
+- Dark / Light / System theme modes
+- English / Korean / System language support
+- `⌘ + Enter` shortcut for quick conversion
+- One-click copy to clipboard
+
+## Tech Stack
 
 - Flutter (Desktop) / Dart
-- macOS 전용
-- 외부 패키지 없음 (Flutter 기본 API만 사용)
+- macOS only
 
-## 테스트
+## Test
 
 ```bash
 flutter test

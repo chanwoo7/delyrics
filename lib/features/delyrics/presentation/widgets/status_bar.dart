@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../domain/models/dedupe_result.dart';
 
 class StatusBar extends StatelessWidget {
@@ -17,6 +18,8 @@ class StatusBar extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
+    final l10n = AppLocalizations.of(context)!;
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: BoxDecoration(
@@ -30,20 +33,20 @@ class StatusBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _StatusItem(
-            label: '입력',
-            value: '${result!.inputLineCount}줄',
+            label: l10n.statusInput,
+            value: l10n.linesCount(result!.inputLineCount),
             color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
           ),
           _Divider(color: theme.colorScheme.outline.withValues(alpha: 0.3)),
           _StatusItem(
-            label: '출력',
-            value: '${result!.outputLineCount}줄',
+            label: l10n.statusOutput,
+            value: l10n.linesCount(result!.outputLineCount),
             color: theme.colorScheme.secondary,
           ),
           _Divider(color: theme.colorScheme.outline.withValues(alpha: 0.3)),
           _StatusItem(
-            label: '중복 제거',
-            value: '${result!.removedDuplicateCount}줄',
+            label: l10n.statusDeduplicated,
+            value: l10n.linesCount(result!.removedDuplicateCount),
             color: result!.removedDuplicateCount > 0
                 ? theme.colorScheme.primary
                 : theme.colorScheme.onSurface.withValues(alpha: 0.5),

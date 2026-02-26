@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../l10n/app_localizations.dart';
 
 class LyricsInputPanel extends StatelessWidget {
   final TextEditingController controller;
@@ -13,6 +14,7 @@ class LyricsInputPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -20,7 +22,7 @@ class LyricsInputPanel extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 2, bottom: 8),
           child: Text(
-            '원본 가사',
+            l10n.originalLyrics,
             style: theme.textTheme.labelMedium,
           ),
         ),
@@ -55,7 +57,7 @@ class LyricsInputPanel extends StatelessWidget {
                   fontFamily: '.AppleSystemUIFont',
                 ),
                 decoration: InputDecoration(
-                  hintText: '여기에 가사를 붙여넣으세요...',
+                  hintText: l10n.inputPlaceholder,
                   hintStyle: TextStyle(
                     color: theme.colorScheme.onSurface.withValues(alpha: 0.3),
                     fontSize: 14,

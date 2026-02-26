@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../l10n/app_localizations.dart';
 
 class LyricsOutputPanel extends StatelessWidget {
   final String outputText;
@@ -11,6 +12,7 @@ class LyricsOutputPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final hasOutput = outputText.isNotEmpty;
 
     return Column(
@@ -19,7 +21,7 @@ class LyricsOutputPanel extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 2, bottom: 8),
           child: Text(
-            '중복 제거 결과',
+            l10n.deduplicatedResult,
             style: theme.textTheme.labelMedium,
           ),
         ),
@@ -63,7 +65,7 @@ class LyricsOutputPanel extends StatelessWidget {
                     )
                   : Center(
                       child: Text(
-                        '변환 결과가 여기에 표시됩니다',
+                        l10n.outputPlaceholder,
                         style: TextStyle(
                           color: theme.colorScheme.onSurface.withValues(alpha: 0.25),
                           fontSize: 14,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../../app.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../domain/models/dedupe_result.dart';
 import '../../domain/services/lyrics_dedupe_service.dart';
 import '../widgets/lyrics_input_panel.dart';
@@ -48,12 +49,13 @@ class _HomePageState extends State<HomePage> {
 
   void _copyResult() {
     if (_outputText.isEmpty) return;
+    final l10n = AppLocalizations.of(context)!;
     Clipboard.setData(ClipboardData(text: _outputText));
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const Text(
-          '결과가 클립보드에 복사되었습니다',
-          style: TextStyle(fontSize: 13),
+        content: Text(
+          l10n.copiedToClipboard,
+          style: const TextStyle(fontSize: 13),
         ),
         behavior: SnackBarBehavior.floating,
         width: 260,
@@ -95,20 +97,20 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // 앱 제목 + 테마 토글
               Row(
                 children: [
                   Text(
-                    '가사 중복 제거기',
+                    'Delyrics',
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   const Spacer(),
+                  _LocaleToggleButton(),
+                  const SizedBox(width: 8),
                   _ThemeToggleButton(),
                 ],
               ),
               const SizedBox(height: 20),
 
-              // 입력 영역
               Expanded(
                 flex: 5,
                 child: LyricsInputPanel(
@@ -118,7 +120,6 @@ class _HomePageState extends State<HomePage> {
               ),
               const SizedBox(height: 16),
 
-              // 액션 버튼
               ActionButtons(
                 onConvert: _convert,
                 onCopy: _copyResult,
@@ -127,7 +128,6 @@ class _HomePageState extends State<HomePage> {
               ),
               const SizedBox(height: 16),
 
-              // 출력 영역
               Expanded(
                 flex: 5,
                 child: LyricsOutputPanel(
@@ -136,9 +136,58 @@ class _HomePageState extends State<HomePage> {
               ),
               const SizedBox(height: 12),
 
-              // 상태 바
               StatusBar(result: _result),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _LocaleToggleButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final notifier = LocaleNotifier.of(context);
+    final l10n = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+
+    final String label;
+    final String tooltip;
+    if (notifier.locale == null) {
+      label = 'SYS';
+      tooltip = l10n.localeSystem;
+    } else if (notifier.locale!.languageCode == 'en') {
+      label = 'EN';
+      tooltip = l10n.localeEnglish;
+    } else {
+      label = 'KO';
+      tooltip = l10n.localeKorean;
+    }
+
+    return Tooltip(
+      message: tooltip,
+      child: SizedBox(
+        width: 34,
+        height: 34,
+        child: IconButton(
+          onPressed: notifier.onToggle,
+          icon: Text(
+            label,
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
+            ),
+          ),
+          padding: EdgeInsets.zero,
+          style: IconButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(7),
+              side: BorderSide(
+                color: theme.colorScheme.outline.withValues(alpha: 0.4),
+              ),
+            ),
           ),
         ),
       ),
@@ -150,6 +199,7 @@ class _ThemeToggleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final notifier = ThemeModeNotifier.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
 
     final IconData icon;
@@ -157,13 +207,13 @@ class _ThemeToggleButton extends StatelessWidget {
     switch (notifier.themeMode) {
       case ThemeMode.system:
         icon = Icons.brightness_auto_rounded;
-        tooltip = '시스템 설정';
+        tooltip = l10n.themeSystem;
       case ThemeMode.light:
         icon = Icons.light_mode_rounded;
-        tooltip = '라이트 모드';
+        tooltip = l10n.themeLight;
       case ThemeMode.dark:
         icon = Icons.dark_mode_rounded;
-        tooltip = '다크 모드';
+        tooltip = l10n.themeDark;
     }
 
     return Tooltip(
