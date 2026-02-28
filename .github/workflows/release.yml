@@ -38,6 +38,8 @@ jobs:
 
       - uses: softprops/action-gh-release@v2
         with:
+          name: Delyrics ${{ github.ref_name }}
+          generate_release_notes: true
           files: Delyrics-macos.dmg
 
   build-windows:
@@ -58,6 +60,8 @@ jobs:
 
       - uses: softprops/action-gh-release@v2
         with:
+          name: Delyrics ${{ github.ref_name }}
+          generate_release_notes: true
           files: Delyrics-windows.zip
 
   build-linux:
@@ -83,4 +87,6 @@ jobs:
 
       - uses: softprops/action-gh-release@v2
         with:
+          name: Delyrics ${{ github.ref_name }}
+          generate_release_notes: true
           files: Delyrics-linux.tar.gz
