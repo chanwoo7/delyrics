@@ -7,17 +7,19 @@
 <p align="center">
   <a href="https://github.com/chanwoo7/delyrics/releases/latest"><img src="https://img.shields.io/github/v/release/chanwoo7/delyrics" alt="Release"></a>
   <a href="https://github.com/chanwoo7/delyrics/releases"><img src="https://img.shields.io/github/downloads/chanwoo7/delyrics/total" alt="Downloads"></a>
-  <img src="https://img.shields.io/badge/platform-macOS-blue" alt="Platform">
+  <img src="https://img.shields.io/badge/platform-macOS%20|%20Windows%20|%20Linux-blue" alt="Platform">
   <img src="https://img.shields.io/badge/Flutter-Desktop-02569B?logo=flutter" alt="Flutter">
 </p>
 
 <p align="center">English | <a href="README.ko.md">한국어</a></p>
 
-<p align="center">A simple macOS desktop app that removes duplicate lines from lyrics.</p>
+<p align="center">A simple desktop app that removes duplicate lines from lyrics.</p>
 
 <p align="center">Paste multi-line lyrics, and the app scans each line top to bottom —<br>removing lines that have already appeared while keeping the first occurrence.</p>
 
 ## Install
+
+### macOS
 
 1. Download `Delyrics.dmg` from the [latest release](https://github.com/chanwoo7/delyrics/releases/latest).
 2. Open the DMG and drag `Delyrics.app` to the **Applications** folder.
@@ -25,25 +27,52 @@
    - Right-click the app → **Open** → click **Open** in the dialog, or
    - Go to **System Settings > Privacy & Security** and click **Open Anyway**.
 
+### Windows
+
+1. Download `Delyrics-windows.zip` from the [latest release](https://github.com/chanwoo7/delyrics/releases/latest).
+2. Extract the zip and run `delyrics.exe`.
+
+### Linux
+
+1. Download the Linux build from the [latest release](https://github.com/chanwoo7/delyrics/releases/latest).
+2. Extract and run the `delyrics` executable.
+
 ## Run
 
 ```bash
+# macOS
 flutter run -d macos
+
+# Windows
+flutter run -d windows
+
+# Linux
+flutter run -d linux
 ```
 
-## Build for macOS
+## Build
 
 ```bash
+# macOS
 flutter build macos
+
+# Windows
+flutter build windows
+
+# Linux
+flutter build linux
 ```
 
-The built app is located at `build/macos/Build/Products/Release/`.
+The built app is located at:
+- macOS: `build/macos/Build/Products/Release/`
+- Windows: `build/windows/x64/runner/Release/`
+- Linux: `build/linux/x64/release/bundle/`
 
 ## Usage
 
 1. Paste lyrics into the input area.
-2. Click the **Convert** button or press `⌘ + Enter`.
-3. The deduplicated result appears in the output area below.
+2. Click the **Convert** button or press `⌘/Ctrl + Enter`.
+3. The deduplicated result appears in the output area.
 4. Click **Copy Result** to copy to clipboard.
 5. Click **Reset** to clear both input and output.
 
@@ -51,7 +80,7 @@ The built app is located at `build/macos/Build/Products/Release/`.
 
 | Shortcut | Action |
 |----------|--------|
-| `⌘ + Enter` | Run deduplication |
+| `⌘/Ctrl + Enter` | Run deduplication |
 | `Enter` | Line break (does not trigger conversion) |
 
 ## Deduplication Rule
@@ -71,13 +100,15 @@ The output preserves the original form of the first occurrence (only trimming le
 - Line-by-line deduplication with whitespace-normalized comparison
 - Dark / Light / System theme modes
 - English / Korean / System language support
-- `⌘ + Enter` shortcut for quick conversion
+- `⌘/Ctrl + Enter` shortcut for quick conversion
 - One-click copy to clipboard
+- Drag & drop or open `.txt` / `.lrc` files
+- Duplicate line highlighting in input
 
 ## Tech Stack
 
 - Flutter (Desktop) / Dart
-- macOS only
+- macOS, Windows, Linux
 
 ## Test
 

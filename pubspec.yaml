@@ -1,5 +1,5 @@
 name: delyrics
-description: "macOS app for deduplicating lyrics line by line."
+description: "Desktop app for deduplicating lyrics line by line."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -39,6 +39,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   desktop_drop: ^0.5.0
   file_picker: ^8.0.0
+  window_manager: ^0.4.3
 
 dev_dependencies:
   flutter_test:

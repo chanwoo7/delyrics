@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart';
 import '../../../../l10n/app_localizations.dart';
 
@@ -25,7 +27,7 @@ class ActionButtons extends StatelessWidget {
       children: [
         _PrimaryButton(
           label: l10n.convert,
-          shortcutHint: '⌘ Enter',
+          shortcutHint: Platform.isMacOS ? '⌘ Enter' : 'Ctrl Enter',
           onPressed: onConvert,
           color: theme.colorScheme.primary,
         ),

@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../../app.dart';
@@ -113,10 +115,14 @@ class _HomePageState extends State<HomePage> {
 
   KeyEventResult _handleKeyEvent(FocusNode node, KeyEvent event) {
     if (event is KeyDownEvent &&
-        event.logicalKey == LogicalKeyboardKey.enter &&
-        HardwareKeyboard.instance.isMetaPressed) {
-      _convert();
-      return KeyEventResult.handled;
+        event.logicalKey == LogicalKeyboardKey.enter) {
+      final isModifierPressed = Platform.isMacOS
+          ? HardwareKeyboard.instance.isMetaPressed
+          : HardwareKeyboard.instance.isControlPressed;
+      if (isModifierPressed) {
+        _convert();
+        return KeyEventResult.handled;
+      }
     }
     return KeyEventResult.ignored;
   }
@@ -180,11 +186,13 @@ class _HomePageState extends State<HomePage> {
                     hasOutput: _outputText.isNotEmpty,
                   ),
                   const Spacer(),
-                  AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 200),
-                    child: _result != null
-                        ? StatusBar(key: const ValueKey('status'), result: _result)
-                        : const SizedBox.shrink(key: ValueKey('empty')),
+                  Flexible(
+                    child: AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 200),
+                      child: _result != null
+                          ? StatusBar(key: const ValueKey('status'), result: _result)
+                          : const SizedBox.shrink(key: ValueKey('empty')),
+                    ),
                   ),
                 ],
               ),
