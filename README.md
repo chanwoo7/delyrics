@@ -17,6 +17,18 @@
 
 <p align="center">Paste multi-line lyrics, and the app scans each line top to bottom —<br>removing lines that have already appeared while keeping the first occurrence.</p>
 
+## Why Delyrics?
+
+Song lyrics from music platforms often repeat the same lines — choruses, hooks, and refrains appear multiple times throughout the text. When you need **only the unique lines** (e.g., for presentation slides, subtitle files, or lyric booklets), manually finding and removing duplicates is tedious and error-prone.
+
+Delyrics was built to solve this in one click: paste the full lyrics, hit Convert, and get a clean copy with every duplicate line removed — while preserving the original order and formatting.
+
+**Common use cases:**
+- Preparing worship song slides (PPT/Keynote) from raw lyrics
+- Creating lyric booklets or printed setlists
+- Cleaning up subtitle or karaoke files
+- Extracting unique lines for translation or analysis
+
 ## Install
 
 ### macOS
